@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AppserviceService, Counter } from '../appservice.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class NavComponent implements OnInit {
-counters: Counter[];
+export class NavbarComponent implements OnInit {
+
+  counters: Counter[];
   constructor(private router: Router, private svc: AppserviceService) { }
 
   ngOnInit() {
@@ -21,9 +21,6 @@ counters: Counter[];
   }
   redirect(){
     this.router.navigate(['carousel'])
-  }
-  red(id){
-    this.router.navigate(['counters/'+id])
   }
 
 }

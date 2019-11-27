@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~8.2.8",
     "@angular/router": "~8.2.8",
     "angular-font-awesome": "^3.1.2",
+    "angular-web-storage": "^7.0.0-beta.1",
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
     "rxjs": "~6.4.0",

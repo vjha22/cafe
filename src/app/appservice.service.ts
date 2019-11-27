@@ -13,7 +13,7 @@ export class Item {
 }
 export class Counter {
   constructor(
-    public counterId: string,
+    public id: string,
     public counterName: string,
     public counterOwner: string,
     public counterEmail: string,
@@ -26,15 +26,24 @@ export class Counter {
   providedIn: 'root'
 })
 export class AppserviceService {
-
+  cart:Item[]=[]
+  a: Item[]=[];
   constructor(private httpClient: HttpClient) { }
   getcounter() {
-    console.log("test call");
+    console.log("test call counter");
     return this.httpClient.get<Counter[]>('http://10.231.139.34:7001/counters')
   }
-  getitem() {
-    console.log("test call");
-    return this.httpClient.get<Item[]>('http://10.231.139.34:7001/menu')
+  getitem(id) {
+    console.log("test call item id:"+id);
+    console.log("yo: http://10.231.139.34:7001/menu/itemsById/{{id}} :"+this.httpClient.get<Item[]>('http://10.231.139.34:7001/menu/itemsById/{{id}}'))
+    return this.httpClient.get<Item[]>('http://10.231.139.34:7001/menu/itemsById/'+id)
   }
-
+  getCounterById(id: string) {
+    console.log("test call counterid");
+    return this.httpClient.get<Counter>('http://10.231.139.34:7001/counters/'+id)
+  }
+  getItemById(id: string){
+    console.log("item by id called")
+    return this.httpClient.get<Item>('http://10.231.139.34:7001/items/'+id)
+  }
 }

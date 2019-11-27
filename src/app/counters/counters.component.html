@@ -1,1 +1,75 @@
+<app-navbar></app-navbar>
+
+    <div class="row">
+        <h2>Counter {{counterId}}</h2>
+    </div>
+    <div class="row">
+        <div *ngFor="let item of items, let i = index">
+            <div *ngIf="i < 3">
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./assets/chess.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.itemName}}</h5>
+                            <p class="card-text">By: {{item.itemDesc}}<br>Price: {{item.itemPrice}}</p>
+                            <a href="#" class="btn btn-primary" routerLink="cart" (click)="add(item.itemId)">Add to
+                                Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngFor="let item of items, let i = index">
+            <div *ngIf="i >= 3 && i < 6">
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./assets/blade.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.itemName}}</h5>
+                            <p class="card-text">By: {{item.itemDesc}}<br>Price: {{item.itemPrice}}</p>
+                            <a href="#" class="btn btn-primary" routerLink="cart" (click)="add(item.itemId)">Add to
+                                Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngFor="let item of items, let i = index">
+            <div *ngIf="i >= 6 && i < 9 ">
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./assets/1984.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.itemName}}</h5>
+                            <p class="card-text">By: {{item.itemDesc}}<br>Price: {{item.itemPrice}}</p>
+                            <a href="#" class="btn btn-primary" routerLink="cart" (click)="add(item.itemId)">Add to
+                                Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngFor="let item of itemss, let i = index">
+            <div *ngIf="i >= 9">
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./assets/alchemist.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.itemName}}</h5>
+                            <p class="card-text">By: {{item.itemDesc}}<br>Price: {{item.itemPrice}}</p>
+                            <a href="#" class="btn btn-primary" routerLink="cart" (click)="add(item.itemId)">Add to
+                                Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 

@@ -1,0 +1,17 @@
+.container{
+ background:url(C:\Users\vjha22\Desktop\projectdxc\dxccafe\src\assets\loginback.jpeg) ;
+background-position-x: center;
+background-position-y: center;
+}
+.jj{
+    color: white;
+    text-align: center;
+}
+
+.col-4{
+    background-color: whitesmoke;
+    border-radius: 15px;    
+   }
+.row1{
+    padding-block-end: 2cm;
+}

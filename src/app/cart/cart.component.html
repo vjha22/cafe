@@ -1,0 +1,24 @@
+<div class="container">
+<app-navbar></app-navbar>
+                
+    <table class="table table-striped table-hover">
+        <thead class="thead thead-dark">
+            <th>Item Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Remove item from cart</th>
+        </thead>
+        <tbody *ngFor="let item of cartt, let i = index">
+            <tr>
+                <td>{{item.itemName}}</td>
+                 <td>{{item.itemPrice}}</td>
+                <!-- <td>{{item.quantity}}</td>-->
+                <td><a class="btn btn-danger" (click)= "remv(i)">Remove</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div><strong>Total Amount: {{cost}}</strong></div>
+    <div *ngIf="cartt.length>0"><a class="btn btn-primary" routerLink="checkout">Checkout</a></div>
+</div>
+
+
