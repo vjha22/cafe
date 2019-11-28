@@ -1,8 +1,9 @@
-<div class="container">
+
 <app-navbar></app-navbar>
-                
+<div class="container">           
     <table class="table table-striped table-hover">
         <thead class="thead thead-dark">
+            <th>Counter</th>
             <th>Item Name</th>
             <th>Price</th>
             <th>Quantity</th>
@@ -10,15 +11,16 @@
         </thead>
         <tbody *ngFor="let item of cartt, let i = index">
             <tr>
+                 <td>{{counters.counterName}}</td>
                 <td>{{item.itemName}}</td>
-                 <td>{{item.itemPrice}}</td>
-                <!-- <td>{{item.quantity}}</td>-->
+                 <td>{{item.itemPrice * quantity[item.itemId]}}</td>
+                <td><button class="btn btn-dark btn1" type="button" (click)="dec(item)"><i class="fa fa-minus-square" aria-hidden="true"></i></button> {{quantity[item.itemId]}} <button type="button" class="btn btn-dark btn1" (click)="inc(item)"><i class="fa fa-plus-square" aria-hidden="true"></i></button></td>
                 <td><a class="btn btn-danger" (click)= "remv(i)">Remove</a></td>
             </tr>
         </tbody>
     </table>
     <div><strong>Total Amount: {{cost}}</strong></div>
-    <div *ngIf="cartt.length>0"><a class="btn btn-primary" routerLink="checkout">Checkout</a></div>
+    <div *ngIf="cartt.length>0"><button class="btn btn-primary" (click)="checkout()">Checkout</button></div>
 </div>
 
 

@@ -15,6 +15,11 @@ import {FormsModule} from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {AngularWebStorageModule} from 'angular-web-storage';
+import { TimerComponent } from './timer/timer.component';
+import {CountdownModule} from 'ngx-countdown';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { OrdersComponent } from './orders/orders.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,12 +29,16 @@ import {AngularWebStorageModule} from 'angular-web-storage';
     CartComponent,
     PaymentComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    TimerComponent,
+    CheckoutComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AngularFontAwesomeModule,
+    CountdownModule,
     HttpClientModule,
     RouterModule.forRoot([
       {path: '', component: PaymentComponent}

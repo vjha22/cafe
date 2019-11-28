@@ -1,17 +1,36 @@
-.container{
+.bg{
  background:url(C:\Users\vjha22\Desktop\projectdxc\dxccafe\src\assets\loginback.jpeg) ;
 background-position-x: center;
 background-position-y: center;
+height: 577px;
+
 }
 .jj{
     color: white;
     text-align: center;
 }
 
-.col-4{
+.col-3{
     background-color: whitesmoke;
     border-radius: 15px;    
    }
 .row1{
     padding-block-end: 2cm;
 }
+p{
+    color: red;
+    font-weight: bold;
+}
+.col-5{
+    background-color: whitesmoke;
+    border-radius: 15px;    
+   }
+   .r1{
+    margin-top: 50pt;
+   }
+   .btn1{
+      margin-left: 170pt;
+   }
+   .btn2{
+    margin-left: 80pt;
+ }

@@ -22,5 +22,8 @@ export class NavbarComponent implements OnInit {
   redirect(){
     this.router.navigate(['carousel'])
   }
+  logout(){
+    this.router.navigate([''])
+  }
 
 }

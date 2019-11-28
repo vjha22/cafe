@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Item, AppserviceService, Counter } from '../appservice.service';
+import { Item, AppserviceService, Counter, Orders, User } from '../appservice.service';
 import { LocalStorageService } from 'angular-web-storage';
+import { element } from 'protractor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -8,27 +10,78 @@ import { LocalStorageService } from 'angular-web-storage';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartt: Item[]=[];
-  cost: number=0;
-  counters: Counter[];
-  constructor(private svc: AppserviceService,private local:LocalStorageService) { }
+  cartt: Item[] = [];
+  cost: number = 0;
+  counters: Counter;
+  counterId: string;
+  quantity:number[]=[];
+  i: number = 0;
+  order:Orders;
+  user:User;
+  constructor(private svc: AppserviceService, private local: LocalStorageService, private router: Router) { }
 
   ngOnInit() {
-    this.cartt=this.local.get("cart");
-   // console.log(this.svc.cart)
-   // this.cartt = this.svc.cart;
-   // this.cartt.forEach(element => {
-    //  this.cost=this.cost + parseInt(element.itemPrice)
-  //  });
-   // this.svc.getcounter().subscribe(response => this.success(response));
+    this.cartt = this.svc.getCart();
+    this.cartt.forEach(element => {
+      this.quantity[element.itemId]=element.itemQuantity;
+    });
+    this.counterId = this.local.get("counter");
+    this.svc.getCounterById(this.counterId).subscribe(res => this.success(res));
+
+    // console.log(this.svc.cart)
+    // this.cartt = this.svc.cart;
+    console.log('printing cart items....')
+    this.svc.getCart().forEach(element => {
+      console.error('cart item...')
+      this.cost = this.cost + parseInt(element.itemPrice) * this.quantity[element.itemId]
+    });
+    // this.svc.getcounter().subscribe(response => this.success(response));
   }
-  remv(i){
+  remv(i) {
     this.cost = this.cost - parseInt(this.cartt[i].itemPrice);
-    this.svc.cart.splice(i,1);
+    this.cartt.splice(i, 1);
+    this.local.clear();
+    this.cartt.forEach(element => {
+      console.log(element)
+    });
+    this.local.set("cart", this.cartt)
   }
-  success(response){
+  success(response) {
     console.log(response)
     this.counters = response;
   }
-
+  inc(item:Item){
+    this.quantity[item.itemId]++;
+    this.cost = 0;
+    this.cartt.forEach(element => {
+      console.error('cart item...')
+      this.cost = this.cost + parseInt(element.itemPrice) * this.quantity[element.itemId];
+    });
+  }
+  dec(item:Item){
+    this.quantity[item.itemId]--;
+    if(this.quantity[item.itemId]==0){
+      this.remv(this.cartt.indexOf(item))
+    }
+    this.cost = 0;
+    this.cartt.forEach(element => {
+      console.error('cart item...')
+      this.cost = this.cost + parseInt(element.itemPrice) * this.quantity[element.itemId];
+    });
+  }
+  checkout(){
+    this.user = this.local.get("id");
+    console.log(this.user);
+    // this.cartt.forEach(element => {
+    //   console.log(element)
+    // });
+    console.warn('logging counter...');
+    
+    console.log(this.counters);
+    this.order = new Orders(this.user, this.counters, this.cartt, this.cost);
+    this.svc.placeOrder(this.order).subscribe(response => this.navigator(response));
+  }
+  navigator(response){
+    this.router.navigate(['checkout'])
+  }
 }

@@ -1,56 +1,66 @@
-<div class="container">
-        
-    <div class="row1">
+   <div class="container-fluid bg">
+   <div class="row1">
         <h1 class="jj">Welcome to DXC cafeteria</h1>
 
-        <div class="row">
+        <div class="row r1">
                 <div class="col-1"></div>
-            <div class="col-4">
+            <div class="col-3 lg">
                 <h3>Already a member? Login here!!!</h3>
                 <form>
                     <div class="form-group">
-                        <label for="uname" class="col-form-label">Email</label> <input type="text" name="uname"
-                            placeholder="Email" class="form-control">
+                        <label for="uname" class="col-form-label">Email</label> 
+                        <input type="text" name="logemail"
+                            placeholder="Email" class="form-control" [(ngModel)]="logemail">
                     </div>
+                     
                     <div class="form-group">
                         <label for="password" class="col-form-label">Password</label> <input type="password"
-                            name="password" placeholder="Password" class="form-control">
+                            name="logpass" placeholder="Password" class="form-control" [(ngModel)]="logpass">
                     </div>
+                    <p class="small">{{logerror}}</p>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary bt1">Login</button>
+                        <button type="submit" class="btn btn-primary btn2" (click)="login()">Login</button>
                     </div>
                 </form>
             </div>
             <div class="col-2"></div>
-            <div class="col-4">
+            <div class="col-5">
                 <h3>Not a member? Sign-up here!!!</h3>
-                <form>
-                    <div class="form-group">
-                        <label for="firstname" class="col-form-label">Firstname</label> <input type="text"
-                            name="firstname" placeholder="First name" class="form-control">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form>
+                            <p class="small">{{regerror}}</p>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Full Name</label> <input type="text"
+                                    name="name" placeholder="Full Name" class="form-control" [(ngModel)]="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="empid" class="col-form-label">Employee ID</label> <input type="text" name="empid"
+                                    placeholder="Employee ID" class="form-control" [(ngModel)]="empid">
+                            </div>
+                            <div class="form-group">
+                                <label for="uname" class="col-form-label">Email</label> <input type="email" name="email"
+                                    placeholder="Email" class="form-control" [(ngModel)]="email">
+                            </div>
+        
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="lastname" class="col-form-label">Last Name</label> <input type="text"
-                            name="lastname" placeholder="Last Name" class="form-control">
+                    <div class="col-md-6">
+                            <p class="small"></p>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">Password</label> <input type="password"
+                                name="password" id="password" placeholder="Password" class="form-control" [(ngModel)]="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="cpassword" class="col-form-label">Confirm Password</label> <input type="password"
+                                name="cpassword" placeholder="Confirm Password" class="form-control" [(ngModel)]="cpassword">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="uname" class="col-form-label">Email</label> <input type="text" name="uname"
-                            placeholder="Email" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password" class="col-form-label">Password</label> <input type="password"
-                            name="password" id="password" placeholder="Password" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="cpassword" class="col-form-label">Confirm Password</label> <input type="password"
-                            name="cpassword" placeholder="Confirm Password" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Sign-Up</button>
-                    </div>
-
-                </form>
+                    <div class="form-group btn1">
+                            <button type="submit" class="btn btn-primary" (click)="register()">Sign-Up</button>
+                        </div>
+                </div>
+                
             </div>
 
         </div>
