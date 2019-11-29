@@ -13,8 +13,8 @@
             <tr>
                  <td>{{counters.counterName}}</td>
                 <td>{{item.itemName}}</td>
-                 <td>{{item.itemPrice * quantity[item.itemId]}}</td>
-                <td><button class="btn btn-dark btn1" type="button" (click)="dec(item)"><i class="fa fa-minus-square" aria-hidden="true"></i></button> {{quantity[item.itemId]}} <button type="button" class="btn btn-dark btn1" (click)="inc(item)"><i class="fa fa-plus-square" aria-hidden="true"></i></button></td>
+                 <td>{{item.itemPrice * item.itemQuantity}}</td>
+                <td><button class="btn btn-dark btn1" type="button" (click)="dec(item)"><i class="fa fa-minus-square" aria-hidden="true"></i></button> {{item.itemQuantity}} <button type="button" class="btn btn-dark btn1" (click)="inc(item)"><i class="fa fa-plus-square" aria-hidden="true"></i></button></td>
                 <td><a class="btn btn-danger" (click)= "remv(i)">Remove</a></td>
             </tr>
         </tbody>

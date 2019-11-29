@@ -23,7 +23,10 @@ export class OrdersComponent implements OnInit {
   SuccessfulResponse(response) {
     console.log("inside successfull response")
     this.orders = response;
-
+    console.log("orders: "+this.orders);
+    this.orders.forEach(element => {
+      console.log(element)
+    });
   }
 
 }

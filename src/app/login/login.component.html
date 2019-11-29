@@ -1,71 +1,100 @@
-   <div class="container-fluid bg">
-   <div class="row1">
+<div class="container-fluid bg">
+    <div class="row1">
         <h1 class="jj">Welcome to DXC cafeteria</h1>
 
-        <div class="row r1">
-                <div class="col-1"></div>
-            <div class="col-3 lg">
+        <div class="row login-div">
+            <div class="col-md-3">
                 <h3>Already a member? Login here!!!</h3>
-                <form>
+                <form [formGroup]="loginGroup" (ngSubmit)="onSubmit1()">
                     <div class="form-group">
-                        <label for="uname" class="col-form-label">Email</label> 
-                        <input type="text" name="logemail"
-                            placeholder="Email" class="form-control" [(ngModel)]="logemail">
+                        <label for="uname" class="col-form-label">Email</label>
+                        <input type="email" formControlName="logemail" placeholder="Email" class="form-control"
+                             [ngClass]="{ 'is-invalid': loginSubmitted && f.logemail.errors }" />
+                        <div *ngIf="loginSubmitted && f.logemail.errors" class="invalid-feedback">
+                            <div *ngIf="f.logemail.errors.required">Email is required</div>
+                            <div *ngIf="f.logemail.errors.email">Email must be a valid email address</div>
+                        </div>
                     </div>
-                     
                     <div class="form-group">
-                        <label for="password" class="col-form-label">Password</label> <input type="password"
-                            name="logpass" placeholder="Password" class="form-control" [(ngModel)]="logpass">
+                        <label class="col-form-label">Password</label> <input type="password" formControlName="logpass"
+                            placeholder="Password" class="form-control" [(ngModel)]="logpass"
+                            [ngClass]="{ 'is-invalid': loginSubmitted && f.logpass.errors }" />
+                        <div *ngIf="loginSubmitted && f.logpass.errors" class="invalid-feedback">
+                            <div *ngIf="f.logpass.errors.required">Password is required</div>
+                            <div *ngIf="f.logpass.errors.minlength">Password must be at least 6 characters</div>
+                        </div>
                     </div>
                     <p class="small">{{logerror}}</p>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn2" (click)="login()">Login</button>
+                        <button type="submit" class="btn btn-primary btn2">Login</button>
                     </div>
                 </form>
             </div>
-            <div class="col-2"></div>
-            <div class="col-5">
-                <h3>Not a member? Sign-up here!!!</h3>
-                <div class="row">
-                    <div class="col-md-6">
-                        <form>
-                            <p class="small">{{regerror}}</p>
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Full Name</label> <input type="text"
-                                    name="name" placeholder="Full Name" class="form-control" [(ngModel)]="name">
+            <div class="col-md-6 offset-2">
+                <form [formGroup]="signUpGroup" (ngSubmit)="onSubmit2()">
+                    <div class="col-md-12">
+
+                        <p class="small">{{regerror}}</p>
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Full Name</label> <input type="text"
+                                formControlName="name" placeholder="Full Name" class="form-control" [(ngModel)]="name"
+                                [ngClass]="{ 'is-invalid': signUpSubmitted && g.name.errors }">
+                            <div *ngIf="signUpSubmitted && g.name.errors" class="invalid-feedback">
+                                <div *ngIf="g.name.errors.required">Name is required</div>
+
                             </div>
-                            <div class="form-group">
-                                <label for="empid" class="col-form-label">Employee ID</label> <input type="text" name="empid"
-                                    placeholder="Employee ID" class="form-control" [(ngModel)]="empid">
+                        </div>
+                        <div class="form-group">
+                            <label for="empid" class="col-form-label">Employee ID</label> <input type="text"
+                                formControlName="empid" placeholder="Employee ID" class="form-control"
+                                [(ngModel)]="empid" [ngClass]="{ 'is-invalid': signUpSubmitted && g.empid.errors }">
+                            <div *ngIf="signUpSubmitted && g.empid.errors" class="invalid-feedback">
+                                <div *ngIf="g.empid.errors.required">Employee id is required</div>
+                                <div *ngIf="g.empid.errors.minlength">Employee Id be a valid Employee Id</div>
                             </div>
-                            <div class="form-group">
-                                <label for="uname" class="col-form-label">Email</label> <input type="email" name="email"
-                                    placeholder="Email" class="form-control" [(ngModel)]="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="uname" class="col-form-label">Email</label> <input type="email"
+                                formControlName="email" placeholder="Email" class="form-control" [(ngModel)]="email"
+                                [ngClass]="{ 'is-invalid': signUpSubmitted && g.email.errors }">
+                            <div *ngIf="signUpSubmitted && g.email.errors" class="invalid-feedback">
+                                <div *ngIf="g.email.errors.required">Email is required</div>
+                                <div *ngIf="g.email.errors.email">Email must be a valid email address</div>
                             </div>
-        
-                        </form>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                            <p class="small"></p>
+                    <div class="col-md-12">
+                        <!-- its here -->
+                        <p class="small"></p>
                         <div class="form-group">
                             <label for="password" class="col-form-label">Password</label> <input type="password"
-                                name="password" id="password" placeholder="Password" class="form-control" [(ngModel)]="password">
+                                formControlName="password" id="password" placeholder="Password" class="form-control"
+                                [(ngModel)]="password" [ngClass]="{ 'is-invalid': signUpSubmitted && g.password.errors }">
+                            <div *ngIf="signUpSubmitted && g.password.errors" class="invalid-feedback">
+                                <div *ngIf="g.password.errors.required">Password is required</div>
+                                <div *ngIf="g.password.errors.minlength">Password must be at least 6 characters
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="cpassword" class="col-form-label">Confirm Password</label> <input type="password"
-                                name="cpassword" placeholder="Confirm Password" class="form-control" [(ngModel)]="cpassword">
+                            <label for="cpassword" class="col-form-label">Confirm Password</label> <input
+                                type="password" formControlName="cpassword" placeholder="Confirm Password"
+                                class="form-control" [(ngModel)]="cpassword"
+                                [ngClass]="{ 'is-invalid': signUpSubmitted && g.cpassword.errors }">
+                            <div *ngIf="signUpSubmitted && g.cpassword.errors" class="invalid-feedback">
+                                <div *ngIf="g.cpassword.errors.required">Password is required</div>
+                                <div *ngIf="g.cpassword.errors.minlength">Password must be at least 6 characters
+                                </div>
+                            </div>
                         </div>
+                        <button class="btn btn-primary">Sign Up</button>
+                        <!-- done -->
                     </div>
-                    <div class="form-group btn1">
-                            <button type="submit" class="btn btn-primary" (click)="register()">Sign-Up</button>
-                        </div>
-                </div>
-                
+                </form>
             </div>
 
         </div>
 
-
-
     </div>
+
 </div>

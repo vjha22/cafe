@@ -35,8 +35,16 @@ export class Orders{
   constructor(
     public user:User,
     public counter:Counter,
-    public items:Item[],
+    public items:ItemQuant[],
     public total:number
+    ){
+
+  }
+}
+export class ItemQuant{
+  constructor(
+    public item:Item,
+    public quant: number
     ){
 
   }

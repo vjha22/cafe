@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Item, AppserviceService, Counter, Orders, User } from '../appservice.service';
+import { Item, AppserviceService, Counter, Orders, User, ItemQuant } from '../appservice.service';
 import { LocalStorageService } from 'angular-web-storage';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
@@ -18,27 +18,28 @@ export class CartComponent implements OnInit {
   i: number = 0;
   order:Orders;
   user:User;
+  listItems: ItemQuant[]=[];
+  items: ItemQuant
   constructor(private svc: AppserviceService, private local: LocalStorageService, private router: Router) { }
 
   ngOnInit() {
     this.cartt = this.svc.getCart();
-    this.cartt.forEach(element => {
-      this.quantity[element.itemId]=element.itemQuantity;
-    });
     this.counterId = this.local.get("counter");
     this.svc.getCounterById(this.counterId).subscribe(res => this.success(res));
-
+    this.cartt.forEach(element => {
+      this.quantity[element.itemId]=1;
+    });
     // console.log(this.svc.cart)
     // this.cartt = this.svc.cart;
     console.log('printing cart items....')
     this.svc.getCart().forEach(element => {
       console.error('cart item...')
-      this.cost = this.cost + parseInt(element.itemPrice) * this.quantity[element.itemId]
+      this.cost = this.cost + parseInt(element.itemPrice) * this.quantity[element.itemId];
     });
     // this.svc.getcounter().subscribe(response => this.success(response));
   }
   remv(i) {
-    this.cost = this.cost - parseInt(this.cartt[i].itemPrice);
+    this.cost = this.cost - parseInt(this.cartt[i].itemPrice)* this.quantity[this.cartt[i].itemId];
     this.cartt.splice(i, 1);
     this.local.clear();
     this.cartt.forEach(element => {
@@ -78,10 +79,13 @@ export class CartComponent implements OnInit {
     console.warn('logging counter...');
     
     console.log(this.counters);
-    this.order = new Orders(this.user, this.counters, this.cartt, this.cost);
-    this.svc.placeOrder(this.order).subscribe(response => this.navigator(response));
-  }
-  navigator(response){
-    this.router.navigate(['checkout'])
+    this.cartt.forEach(element => {
+      this.items = new ItemQuant(element,this.quantity[element.itemId]);
+      this.listItems.push(this.items);
+    });
+    this.order = new Orders(this.user, this.counters, this.listItems, this.cost);
+    this.local.set("order",this.order);
+    this.router.navigate(['payment'])
+    //this.svc.placeOrder(this.order).subscribe(response => this.navigator(response));
   }
 }

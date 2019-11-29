@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AppserviceService, Orders } from '../appservice.service';
+import { LocalStorageService } from 'angular-web-storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -7,10 +10,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-
+  order:Orders
   public payuform: any = {};
   disablePaymentButton: boolean = true;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private svc: AppserviceService, private local: LocalStorageService, private router: Router) { }
 
   confirmPayment() {
     const paymentPayload = {
@@ -35,8 +38,16 @@ export class PaymentComponent implements OnInit {
       })
   }
 
-  ngOnInit() {
-  }
 
+  
+  ngOnInit() {
+   this.order =  this.local.get("order");
+  }
+  proceed(){
+    this.svc.placeOrder(this.order).subscribe(response => this.navigator(response));
+  }
+  navigator(response){
+    this.router.navigate(['checkout']);
+  }
 
 }

@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="container-fluid py-3">
   <div class="row">
       <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
@@ -60,7 +61,7 @@
                           <span class="help-block" data-valmsg-for="x_zip" data-valmsg-replace="true"></span>
                       </div>
                       <div>
-                          <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                          <button id="payment-button" type="button" class="btn btn-lg btn-info btn-block" (click)="proceed()">
                               <i class="fa fa-lock fa-lg"></i>&nbsp;
                               <span id="payment-button-amount"><span style="font-weight:bold;">&#8377;</span>Pay</span>
                               <span id="payment-button-sending" style="display:none;">Sending…</span>

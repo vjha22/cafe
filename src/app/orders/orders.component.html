@@ -6,7 +6,7 @@
         <thead class="thead-dark">
             <tr>
                 <th>OrderId</th>
-                <th>Items</th>
+                <th colspan="4" class="cent">Items</th>
                 <th>Total Cost</th>
 
                 <!-- <th>Items</th>
@@ -16,12 +16,40 @@
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <th>#</th>
+
+                <th>Item Name</th>
+                <th>Item Quantity</th>
+                <th>Item Price</th>
+                <th>Total Price</th>
+
+                <th><span style="font-weight:bold;">&#8377;</span></th>
+            </tr>
+
             <tr *ngFor="let o of orders">
                 <td>{{o.id}}</td>
 
 
                 <div>
-                    <td *ngFor="let kk of o.items">{{kk.itemName}} -- <span style="font-weight:bold;">&#8377;</span>{{kk.itemPrice}}<br></td>
+                    <td *ngFor="let i of o.items">
+                        <div>{{i.item.itemName}}</div>
+                    </td>
+                    <td *ngFor="let i of o.items">
+                        <div>
+                            {{i.quant}}
+                        </div>
+                    </td>
+                    <td *ngFor="let i of o.items">
+                        <div>
+                            <span style="font-weight:bold;">&#8377;</span>{{kk.itemPrice}}
+                        </div>
+                    </td>
+                    <td *ngFor="let i of o.items">
+                        <div>
+                            <span style="font-weight:bold;">&#8377;</span>{{i.item.itemPrice * i.quant}}
+                        </div>
+                    </td>
                 </div>
 
                 <td>{{o.total}}</td>
