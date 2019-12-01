@@ -28,6 +28,7 @@ export class CountersComponent implements OnInit {
     });
 
      this.counterId = this.route.snapshot.paramMap.get('id');
+     console.error(this.counterId);
     // console.log('counter id ' + this.counterId)
     // console.log(this.counterId)
     this.svc.getitem(this.counterId).subscribe(resp => this.success1(resp));
@@ -35,8 +36,8 @@ export class CountersComponent implements OnInit {
     // this.svc.getcounter().subscribe(response => this.success3(response));
   }
   success1(response) {
-    console.log(response)
-    this.items = response;
+    console.error("response: "+response);
+    this.items = response.menuList;
   }
   
   add(id:string) {
@@ -72,7 +73,8 @@ export class CountersComponent implements OnInit {
     //console.log(this.svc.cart)
     //this.cart.push(data)
     // this.local.set(this.key,this.cart);
-     this.local.set("counter",this.counterId)  
+     this.local.set("counter",this.counterId) 
+     alert(data.itemName+' successfully added to cart!') 
   }
   success3(response){
     console.log(response)

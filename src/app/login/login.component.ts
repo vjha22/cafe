@@ -21,12 +21,12 @@ export class LoginComponent implements OnInit {
   regerror: string = "";
   user: User;
   userForm: FormGroup;
-  
+
   submitted = false;
   entry = false;
 
-  loginSubmitted:boolean  = false;
-  signUpSubmitted:boolean = false;
+  loginSubmitted: boolean = false;
+  signUpSubmitted: boolean = false;
 
 
 
@@ -44,23 +44,23 @@ export class LoginComponent implements OnInit {
       }),
       loginGroup: this.formbuilder.group({
         logemail: new FormControl('', [Validators.required, Validators.email]),
-      logpass: new FormControl('', [Validators.required, Validators.minLength(5)])
+        logpass: new FormControl('', [Validators.required, Validators.minLength(5)])
       })
 
     })
 
   }
 
-  get signUpGroup(){
+  get signUpGroup() {
     return this.userForm.get('signUpGroup');
   }
 
-  get loginGroup(){
+  get loginGroup() {
     return this.userForm.get('loginGroup')
   }
 
   logsuccess(response) {
-    if (response.password == this.logpass) {
+    if (response.password == this.userForm.get('loginGroup').value.logpass) {
       this.logerror = "";
       this.local.set("id", response);
       console.log("storage user")
@@ -82,33 +82,38 @@ export class LoginComponent implements OnInit {
   onSubmit1() {
     console.log("inside sub1");
     this.loginSubmitted = true;
-    // if(this.userForm.invalid){
-    //   console.log("inside if");
-    //   return;
-    // }
-    this.svc.getUserByEmail(this.logemail).subscribe(response => {
+    if (this.userForm.get('loginGroup').invalid) {
+      console.log("inside if");
+      return;
+    }
+    console.log(this.userForm.get('loginGroup').value);
+
+    this.svc.getUserByEmail(this.userForm.get('loginGroup').value.logemail).subscribe(response => {
       this.logsuccess(response);
+      alert('SUccess! :-)\n\n' + JSON.stringify(this.userForm.value, null, 4))
     });
-    alert('SUccess! :-)\n\n' + JSON.stringify(this.userForm.value, null, 4))
+
 
   }
   onReset() {
     this.submitted = false;
     this.userForm.reset();
   }
-  
-  get g() { return (<FormGroup>this.userForm.get('signUpGroup')).controls}
+
+  get g() { return (<FormGroup>this.userForm.get('signUpGroup')).controls }
 
   onSubmit2() {
     console.log("inside sub2");
     this.signUpSubmitted = true;
-    if(this.userForm.invalid){
+    console.log(this.userForm.get('loginGroup'))
+    if (this.userForm.get('signUpGroup').invalid) {
       console.log("inside if");
       return;
     }
     if (this.password == this.cpassword) {
       this.regerror = "";
-      this.user = new User(this.empid, this.name, this.password, this.email);
+      console.log(this.userForm.get('signUpGroup').value)
+      this.user = new User(this.userForm.get('signUpGroup').value.empid, this.userForm.get('signUpGroup').value.name, this.userForm.get('signUpGroup').value.password, this.userForm.get('signUpGroup').value.email);
       this.svc.createUser(this.user).subscribe(response => {
         this.regsuccess(response);
       });

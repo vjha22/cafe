@@ -34,6 +34,8 @@ export class User{
 export class Orders{
   constructor(
     public user:User,
+    public status:string,
+    public date:string,
     public counter:Counter,
     public items:ItemQuant[],
     public total:number
@@ -81,35 +83,38 @@ export class AppserviceService {
 
   getcounter() {
     console.log("test call counter");
-    return this.httpClient.get<Counter[]>('http://10.231.139.34:7001/counters')
+    return this.httpClient.get<Counter[]>('http://192.168.1.5:7001/counters')
   }
   getitem(id) {
     console.log("test call item id:" + id);
     console.log("yo: http://10.231.139.34:7001/menu/itemsById/{{id}} :" + this.httpClient.get<Item[]>('http://10.231.139.34:7001/menu/itemsById/{{id}}'))
-    return this.httpClient.get<Item[]>('http://10.231.139.34:7001/menu/itemsById/' + id)
+    return this.httpClient.get<Item[]>('http://192.168.1.5:7001/menus/itemsById/' + id)
   }
   getCounterById(id: string) {
     console.log("test call counterid");
-    return this.httpClient.get<Counter>('http://10.231.139.34:7001/counters/' + id)
+    return this.httpClient.get<Counter>('http://192.168.1.5:7001/counters/' + id)
   }
   getItemById(id: string) {
     console.log("item by id called")
-    return this.httpClient.get<Item>('http://10.231.139.34:7001/items/' + id)
+    return this.httpClient.get<Item>('http://192.168.1.5:7001/items/' + id)
   }
   createUser(u:User){
     console.log("user create")
-    return this.httpClient.post<User>('http://10.231.136.18:5000/users',u)
+    return this.httpClient.post<User>('http://192.168.1.5:5000/users',u)
   }
   getUserByEmail(email:string){
     console.log("get user by email")
-    return this.httpClient.get<User>('http://10.231.136.18:5000/users/'+email)
+    return this.httpClient.get<User>('http://192.168.1.5:5000/users/'+email)
   }
   placeOrder(o:Orders){
     console.log("placing order")
-    return this.httpClient.post<Orders>('http://10.231.136.18:5000/orders',o)
+    return this.httpClient.post<Orders>('http://192.168.1.5:5000/orders',o)
   }
   getOrdersByUserId(id:string){
     console.log("getting orders");
-    return this.httpClient.get<Orders[]>('http://10.231.136.18:5000/ordersbyuser/'+id)
+    return this.httpClient.get<Orders[]>('http://192.168.1.5:5000/ordersbyuser/'+id)
+  }
+  getOrder(uid:string, orderDate:string){
+    return this.httpClient.get<Orders>("http://192.168.1.5:5000/orders/"+uid+"/"+orderDate);
   }
 }

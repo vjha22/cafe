@@ -1,3 +1,24 @@
 .r1{
     margin-left: 5px;
 }
+img{
+  height: 19rem; 
+}
+.row{
+    margin-top: 20pt;
+    margin-left: 80px;
+}
+.cont{
+    background-image:url(C:\projectdxc\dxccafe\src\assets\myorderback.jpg) ;
+    margin-top: -0.7cm;
+}
+.card{
+    background-color: rgb(189, 189, 189);
+    margin-left: 20pt;
+
+}
+.head{
+    margin-left: 345pt; 
+    color: white;
+    margin-top: 10pt;
+}

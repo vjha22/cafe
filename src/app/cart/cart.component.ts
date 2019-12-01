@@ -3,6 +3,8 @@ import { Item, AppserviceService, Counter, Orders, User, ItemQuant } from '../ap
 import { LocalStorageService } from 'angular-web-storage';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-cart',
@@ -20,7 +22,12 @@ export class CartComponent implements OnInit {
   user:User;
   listItems: ItemQuant[]=[];
   items: ItemQuant
-  constructor(private svc: AppserviceService, private local: LocalStorageService, private router: Router) { }
+  date:Date = new Date();
+  status:string = "Pending";
+
+  constructor(private svc: AppserviceService, private local: LocalStorageService, private router: Router){
+    //this.date = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+   }
 
   ngOnInit() {
     this.cartt = this.svc.getCart();
@@ -83,7 +90,7 @@ export class CartComponent implements OnInit {
       this.items = new ItemQuant(element,this.quantity[element.itemId]);
       this.listItems.push(this.items);
     });
-    this.order = new Orders(this.user, this.counters, this.listItems, this.cost);
+    this.order = new Orders(this.user,this.status,this.date.toString(), this.counters, this.listItems, this.cost);
     this.local.set("order",this.order);
     this.router.navigate(['payment'])
     //this.svc.placeOrder(this.order).subscribe(response => this.navigator(response));

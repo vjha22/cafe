@@ -3,10 +3,13 @@
     width: 80%;
     border-radius: 15px; /* Rounded border */
     margin: 0 auto; /* Center the coupon */
+    padding-top: 10t;
     max-width: 600px;
   }
-  
-  .container {
+  .cont{
+    text-align: center;
+  }
+  .container1 {
     padding: 2px 16px;
     background-color: #f1f1f1;
   }
@@ -21,4 +24,8 @@
   }
   .timer{
         text-align: center;
+        color: red;
+  }
+  .cent{
+    text-align: center;
   }

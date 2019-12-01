@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -20,6 +20,8 @@ import { CountdownModule } from 'ngx-countdown';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrdersComponent } from './orders/orders.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,7 @@ import { OrdersComponent } from './orders/orders.component';
     TimerComponent,
     CheckoutComponent,
     OrdersComponent,
+   
   ],
   imports: [
     BrowserModule,

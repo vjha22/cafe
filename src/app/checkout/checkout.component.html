@@ -1,16 +1,65 @@
-<app-navbar></app-navbar>
+<div class="container-fluid">
+    <app-navbar></app-navbar>
+    <h1>Please stay on this page. Do not redirect to any other page.</h1>
+    <div>&nbsp;</div>
+    <div class="timer">Please present a photo of the following receipt on the respective counter.</div>
+    <div class="timer">Have a great meal!</div>
+</div>
 <div class="coupon">
-        <div class="container">
-          <h3>Company Logo</h3>
+    <div class="container container1">
+        <h3>Company Logo</h3>
+    </div>
+    <div class="timer" *ngIf="status === 'Accepted'">
+        <div>
+            <h2>{{notification}}</h2>
         </div>
-        <div class="timer"><app-timer></app-timer></div>
-        <div class="container" style="background-color:white">
-          <h2><b>20% OFF YOUR PURCHASE</b></h2>
-          <p>Lorem ipsum..</p>
+        <div>
+            <app-timer></app-timer>
         </div>
-        <div class="container">
-          <p>Use Promo Code: <span class="promo">BOH232</span></p>
-          <p class="expire">Expires: Jan 03, 2021</p>
-        </div>
-      </div>
-        
+    </div>
+    <div class="timer" *ngIf="status === 'Ready'">
+        <h1>{{notification}}</h1>
+    </div>
+    <div class="timer" *ngIf="status === 'Pending'">
+        <h2>{{notification}}</h2>
+    </div>
+    <div class="container" style="background-color:white">
+        <h2><b>{{order.counter.counterName}}</b></h2>
+        <p>{{order.date}}</p>
+        <p>Customer Name: {{order.user.name}}</p>
+        <div>Order Total : <span style="font-weight:bold;">&#8377;</span> {{order.total}}</div>
+    </div>
+    <div class="container container1">
+        <table class="table table-bordered">
+            <thead>
+
+                <th class="cent">Item Name</th>
+                <th class="cent">Item Quantity</th>
+                <th class="cent">Item Price</th>
+                <th class="cent">Total Price</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of order.items">
+                    <td class="cent">
+                        <div>{{i.item.itemName}}</div>
+                    </td>
+                    <td class="cent">
+                        <div>
+                            {{i.quant}}
+                        </div>
+                    </td>
+                    <td class="cent">
+                        <div>
+                            <span style="font-weight:bold;">&#8377;</span>{{i.item.itemPrice}}
+                        </div>
+                    </td>
+                    <td class="cent">
+                        <div>
+                            <span style="font-weight:bold;">&#8377;</span>{{i.item.itemPrice * i.quant}}
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

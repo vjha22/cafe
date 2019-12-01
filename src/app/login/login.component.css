@@ -1,5 +1,5 @@
 .bg{
- background:url(C:\Users\vjha22\Desktop\projectdxc\dxccafe\src\assets\loginback.jpeg) ;
+ background:url(C:\projectdxc\dxccafe\src\assets\counterback.jpg) ;
 background-position-x: center;
 background-position-y: center;
 height: 577px;
@@ -8,29 +8,36 @@ height: 577px;
 .jj{
     color: white;
     text-align: center;
+    font-weight: bolder;
 }
 
-.login-div{
-    background-color: whitesmoke;
-    border-radius: 15px;    
-   }
+.col{
+    background-color: rgb(202, 202, 45);
+    border-radius: 15px;
+    block-size: 8.3cm;    
+   } 
 .row1{
-    padding-block-end: 2cm;
+    padding-block-end: 10pt;
 }
 p{
     color: red;
     font-weight: bold;
 }
-.col-5{
-    background-color: whitesmoke;
-    border-radius: 15px;    
+.col-md-4{
+    
+    background-color: rgb(202, 202, 45);
+    border-radius: 15px; 
+    block-size: 13.6cm;   
    }
    .r1{
     margin-top: 50pt;
    }
-   .btn1{
-      margin-left: 170pt;
+   .btn{
+      margin-left: 95pt;
    }
    .btn2{
-    margin-left: 80pt;
+    margin-left: 70pt;
+ }
+ .small{
+     font-weight: bold;
  }
